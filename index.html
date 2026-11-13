@@ -1,0 +1,1008 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10152b">
+<title>IntervAI | Your Personal AI Interview Coach</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #0c1123;
+    --surface: #151c35;
+    --surface2: #1c2542;
+    --purple: #8875f5;
+    --purple2: #a99bff;
+    --white: #ffffff;
+    --muted: #a6aec7;
+    --border: rgba(255,255,255,0.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* NAVBAR */
+
+.navbar {
+    width: 100%;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8%;
+    border-bottom: 1px solid var(--border);
+    background: rgba(12,17,35,0.94);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.logo-icon {
+    width: 39px;
+    height: 39px;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#a294ff,#6954d9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.logo span {
+    color: var(--purple2);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.nav-links a {
+    color: #c0c5d8;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--purple2);
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.btn-login {
+    padding: 10px 19px;
+    color: white;
+    font-size: 14px;
+    background: transparent;
+    border: 0;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg,#8c79f6,#6956db);
+    padding: 12px 23px;
+    border-radius: 9px;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(126,105,239,0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(126,105,239,0.35);
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    font-size: 25px;
+    border: none;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 650px;
+    padding: 95px 8% 85px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 55px;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: #765de9;
+    opacity: 0.09;
+    filter: blur(120px);
+    top: 50px;
+    left: 10%;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 15px;
+    background: rgba(137,117,245,0.12);
+    border: 1px solid rgba(137,117,245,0.25);
+    border-radius: 30px;
+    color: #c3baff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    background: #a99bff;
+    border-radius: 50%;
+}
+
+.hero h1 {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(39px,5.2vw,65px);
+    line-height: 1.13;
+    letter-spacing: -2px;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.gradient-text {
+    background: linear-gradient(100deg,#a99bff,#8272f2,#c4aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+    max-width: 510px;
+    margin-bottom: 33px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.hero-actions button {
+    padding: 15px 25px;
+    font-size: 14px;
+}
+
+.btn-outline {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.035);
+    color: white;
+    border-radius: 9px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    border-color: var(--purple);
+    background: rgba(137,117,245,0.1);
+}
+
+.hero-note {
+    margin-top: 27px;
+    color: #8993ae;
+    font-size: 12px;
+}
+
+/* DASHBOARD PREVIEW */
+
+.hero-visual {
+    position: relative;
+    z-index: 2;
+}
+
+.dashboard {
+    background: linear-gradient(145deg,#1b2441,#141b32);
+    border: 1px solid rgba(172,157,255,0.18);
+    border-radius: 19px;
+    padding: 24px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    transform: perspective(1000px) rotateY(-4deg);
+}
+
+.dash-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 27px;
+}
+
+.dash-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.online {
+    color: #6be0ae;
+    font-size: 11px;
+}
+
+.dash-welcome {
+    background: linear-gradient(110deg,#5145a5,#7965e7);
+    border-radius: 13px;
+    padding: 22px;
+    margin-bottom: 19px;
+}
+
+.dash-welcome small {
+    color: #dedaff;
+    font-size: 11px;
+}
+
+.dash-welcome h3 {
+    font-size: 21px;
+    margin: 9px 0;
+}
+
+.dash-welcome p {
+    color: #e2ddff;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.dash-stats {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 13px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.stat-card small {
+    color: #9da8c4;
+    font-size: 11px;
+}
+
+.stat-card h3 {
+    font-size: 25px;
+    margin: 8px 0 3px;
+}
+
+.stat-card p {
+    font-size: 10px;
+    color: #71dcae;
+}
+
+.dash-section-title {
+    font-size: 13px;
+    margin-bottom: 13px;
+}
+
+.activity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.04);
+    padding: 13px;
+    border-radius: 10px;
+    margin-bottom: 9px;
+}
+
+.activity-icon {
+    width: 37px;
+    height: 37px;
+    border-radius: 10px;
+    background: rgba(137,117,245,0.17);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-info {
+    flex: 1;
+}
+
+.activity-info h4 {
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.activity-info p {
+    font-size: 10px;
+    color: #9da8c4;
+}
+
+.activity-arrow {
+    color: #aaa0ff;
+}
+
+/* SECTION COMMON */
+
+section {
+    padding: 85px 8%;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 48px;
+}
+
+.section-tag {
+    color: var(--purple2);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.section-heading h2 {
+    font-family: 'Manrope',sans-serif;
+    font-size: clamp(28px,3.5vw,40px);
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+/* FEATURES */
+
+.features {
+    background: #10172d;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 19px;
+}
+
+.feature-card {
+    background: #18213b;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 27px;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(158,140,255,0.5);
+    background: #1d2745;
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(137,117,245,0.15);
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 21px;
+}
+
+.feature-card h3 {
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* HOW IT WORKS */
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.step-card {
+    text-align: center;
+    padding: 25px;
+}
+
+.step-number {
+    width: 55px;
+    height: 55px;
+    background: rgba(137,117,245,0.15);
+    border: 1px solid rgba(137,117,245,0.3);
+    color: #b4a7ff;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 21px;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.step-card h3 {
+    margin-bottom: 12px;
+    font-size: 17px;
+}
+
+.step-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* CTA */
+
+.cta-section {
+    padding-top: 35px;
+    padding-bottom: 90px;
+}
+
+.cta-box {
+    background: linear-gradient(115deg,#493c9d,#7965e7);
+    border-radius: 20px;
+    padding: 60px 25px;
+    text-align: center;
+}
+
+.cta-box h2 {
+    font-family: 'Manrope',sans-serif;
+    font-size: clamp(27px,4vw,39px);
+    margin-bottom: 15px;
+}
+
+.cta-box p {
+    color: #e3ddff;
+    font-size: 14px;
+    margin-bottom: 27px;
+}
+
+.btn-white {
+    background: white;
+    color: #5143a9;
+    border: none;
+    border-radius: 9px;
+    padding: 14px 26px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 35px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+footer p {
+    color: #8791ab;
+    font-size: 12px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 22px;
+}
+
+.footer-links a {
+    color: #aeb6cb;
+    font-size: 12px;
+}
+
+.footer-links a:hover {
+    color: var(--purple2);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .hero {
+        padding: 75px 5%;
+        gap: 30px;
+    }
+
+    section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:750px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        background: #141b32;
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 23px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-buttons {
+        gap: 5px;
+    }
+
+    .btn-login {
+        padding: 9px;
+    }
+
+    .nav-buttons .btn-primary {
+        padding: 10px 13px;
+        font-size: 12px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 65px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .dashboard {
+        transform: none;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    section {
+        padding-top: 65px;
+        padding-bottom: 65px;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media(max-width:400px) {
+    .logo {
+        font-size: 19px;
+    }
+
+    .logo-icon {
+        width: 33px;
+        height: 33px;
+    }
+
+    .nav-buttons .btn-primary {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        <div class="logo-icon">✦</div>
+        Interv<span>AI</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <div class="nav-buttons">
+        <a href="login.html" class="btn-login" id="loginLink">Login</a>
+        <a href="signup.html" class="btn-primary" id="signupLink">Get Started</a>
+        <span id="accountStatus" hidden></span>
+        <button class="btn-login" id="logoutButton" type="button" hidden>Log out</button>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </div>
+
+</header>
+
+
+<!-- HERO SECTION -->
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            YOUR AI-POWERED INTERVIEW PARTNER
+        </div>
+
+        <h1>
+            Turn Interview
+            <span class="gradient-text">Anxiety</span>
+            Into Confidence.
+        </h1>
+
+        <p class="hero-description">
+            Prepare smarter with IntervAI. Practice real-world interview
+            questions, receive intelligent feedback, improve your
+            communication and get ready for your dream career.
+        </p>
+
+        <div class="hero-actions">
+            <button class="btn-primary" onclick="goToSignup()">
+                Start Practicing →
+            </button>
+
+            <button class="btn-outline" onclick="scrollToFeatures()">
+                Explore Features
+            </button>
+        </div>
+
+        <p class="hero-note">
+            ✦ Practice at your own pace. Improve with every interview.
+        </p>
+
+    </div>
+
+
+    <!-- DASHBOARD PREVIEW -->
+
+    <div class="hero-visual">
+
+        <div class="dashboard">
+
+            <div class="dash-top">
+                <div class="dash-title">Your Performance Overview</div>
+                <div class="online">● AI Active</div>
+            </div>
+
+            <div class="dash-welcome">
+                <small>WELCOME TO INTERVAI</small>
+                <h3>Ready for your next interview?</h3>
+                <p>Every practice session brings you one step closer to success.</p>
+            </div>
+
+            <div class="dash-stats">
+
+                <div class="stat-card">
+                    <small>Practice Sessions</small>
+                    <h3>12</h3>
+                    <p>Keep improving</p>
+                </div>
+
+                <div class="stat-card">
+                    <small>Average Score</small>
+                    <h3>85%</h3>
+                    <p>Sample preview</p>
+                </div>
+
+            </div>
+
+            <h4 class="dash-section-title">Your Interview Journey</h4>
+
+            <div class="activity">
+                <div class="activity-icon">🎯</div>
+                <div class="activity-info">
+                    <h4>Technical Interview</h4>
+                    <p>Java · Intermediate</p>
+                </div>
+                <span class="activity-arrow">→</span>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">💬</div>
+                <div class="activity-info">
+                    <h4>Communication Practice</h4>
+                    <p>Speaking · Beginner</p>
+                </div>
+                <span class="activity-arrow">→</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features" id="features">
+
+    <div class="section-heading">
+        <div class="section-tag">WHAT WE OFFER</div>
+
+        <h2>Everything You Need to <span class="gradient-text">Succeed</span></h2>
+
+        <p>
+            An intelligent interview preparation platform designed
+            to help you build skills, confidence and career readiness.
+        </p>
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">🎤</div>
+            <h3>AI Mock Interview</h3>
+            <p>Practice interviews using voice or text. Experience role-based questions and receive AI-powered feedback.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📄</div>
+            <h3>Resume Analyzer</h3>
+            <p>Upload your resume, analyze your skills and identify areas where your profile can improve.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Performance Analysis</h3>
+            <p>Understand your performance through answer quality, communication and interview scores.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>Personalized Roadmap</h3>
+            <p>Get personalized learning recommendations based on your interview performance and skill gaps.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">💻</div>
+            <h3>Technical Interview Arena</h3>
+            <p>Practice programming, Java, Python, SQL, DSA and technical interview questions.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Progress Tracking</h3>
+            <p>Track completed interviews, monitor improvement and review your previous performance.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section id="how-it-works">
+
+    <div class="section-heading">
+        <div class="section-tag">SIMPLE PROCESS</div>
+        <h2>How <span class="gradient-text">IntervAI</span> Works</h2>
+        <p>Start your interview preparation in three simple steps.</p>
+    </div>
+
+    <div class="steps-grid">
+
+        <div class="step-card">
+            <div class="step-number">01</div>
+            <h3>Create Your Profile</h3>
+            <p>Sign up, select your career goal and choose your preferred interview domain.</p>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">02</div>
+            <h3>Practice With AI</h3>
+            <p>Answer intelligent interview questions through voice or text and experience realistic practice sessions.</p>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">03</div>
+            <h3>Analyze & Improve</h3>
+            <p>Receive personalized feedback, identify weak areas and improve your interview performance.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="cta-section" id="about">
+
+    <div class="cta-box">
+
+        <h2>Your Dream Job Starts With Preparation.</h2>
+
+        <p>
+            Stop worrying about interviews. Start preparing with IntervAI
+            and build the confidence to face your next opportunity.
+        </p>
+
+        <button class="btn-white" onclick="goToSignup()">
+            Get Started With IntervAI →
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <a href="index.html" class="logo">
+        <div class="logo-icon">✦</div>
+        Interv<span>AI</span>
+    </a>
+
+    <p>© 2026 IntervAI. Your Personal AI Interview Coach.</p>
+
+    <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+    </div>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+function scrollToFeatures() {
+    document.getElementById("features").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function goToSignup() {
+    window.location.href = "signup.html";
+}
+
+async function loadSession() {
+    try {
+        const response = await fetch("/api/me");
+        if (!response.ok) return;
+
+        const result = await response.json();
+        if (!result.user) return;
+
+        document.getElementById("loginLink").hidden = true;
+        document.getElementById("signupLink").hidden = true;
+        const accountStatus = document.getElementById("accountStatus");
+        accountStatus.textContent = `Hi, ${result.user.name}`;
+        accountStatus.hidden = false;
+        document.getElementById("logoutButton").hidden = false;
+    } catch (error) {
+        console.error("Could not check the current session.", error);
+    }
+}
+
+document.getElementById("logoutButton").addEventListener("click", async () => {
+    try {
+        const response = await fetch("/api/logout", { method: "POST" });
+        if (!response.ok) throw new Error("Sign out failed.");
+        window.location.reload();
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+    });
+});
+
+loadSession();
+
+</script>
+
+</body>
+</html>

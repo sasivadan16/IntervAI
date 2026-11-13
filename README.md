@@ -1,81 +1,68 @@
-# IntervAI – Your Personal AI Interview Coach
-**Practice. Improve. Ace.**
+# IntervAI — Your Personal AI Interview Coach
 
-IntervAI is an AI-based interview preparation platform designed to help students and job seekers improve their interview skills, build confidence, and prepare for career opportunities.
+A full-stack starter application with:
+- Responsive HTML/CSS/JavaScript frontend
+- Java 17 + Spring Boot REST backend
+- MySQL persistence
+- Registration and login (BCrypt password hashing)
+- Interview question bank and answer submission
+- Simple transparent demo scoring (not an LLM evaluation)
 
-The platform provides an interactive interview practice environment with answer evaluation, resume review guidance, performance tracking, and a structured preparation roadmap.
+## Requirements
+- Java 17+
+- Maven 3.9+
+- MySQL 8+
+- VS Code (or IntelliJ)
 
-## ✨ Key Features
+## 1. Create the database
+Run in MySQL:
 
-- **Mock Interview Practice:** Practice role-based technical and behavioral interview questions.
-- **Answer Evaluation:** Get sample feedback based on answer structure, length, and keyword coverage.
-- **Resume Review:** Upload a resume and access a practical improvement checklist.
-- **Filler Word Detection:** Identify common filler words in typed answers.
-- **Performance Dashboard:** Track practice sessions and evaluation scores.
-- **Preparation Roadmap:** Follow a structured interview preparation plan.
-
-## 🛠️ Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- Browser LocalStorage
-
-## 📂 Project Structure
-
-```
-IntervAI/
-│
-├── intervai_website.html
-└── README.md
+```sql
+CREATE DATABASE intervai;
 ```
 
-## 🚀 Getting Started
+## 2. Configure the backend
+Open `backend/src/main/resources/application.properties` and set your MySQL username/password.
 
-1. Clone this repository:
+The default configuration expects:
+- database: `intervai`
+- username: `root`
+- password: `your_password`
 
+## 3. Start the backend
+
+From the `backend` folder:
+
+```bash
+mvn spring-boot:run
 ```
-git clone https://github.com/sasivadan16/IntervAI.git
-```
-2. Open the project folder.
-3. Open `intervai_website.html` in your browser.
-4. Start exploring the IntervAI features.
-No additional installation is required.
 
-## 🎯 Project Objective
-The main objective of IntervAI is to make interview preparation more accessible and structured by providing students with a platform to practise answering questions, identify areas for improvement, and develop confidence.
+Backend URL: `http://localhost:8080`
 
-## 🔮 Future Enhancements
+Health check: `http://localhost:8080/api/health`
 
-- AI-powered personalized answer evaluation.
-- Voice-based mock interviews.
-- Speech recognition and real-time feedback.
-- AI-powered resume analysis.
-- User authentication and progress synchronization.
-- Java Spring Boot backend and MySQL database integration.
+## 4. Start the frontend
+Open `frontend/index.html` using VS Code Live Server.
 
-## 👩‍💻 Project Information
-**Project Name:** IntervAI
-**Category:** Artificial Intelligence / Interview Preparation
-**Project Type:** Web Application
-**Developed By:** Satya Harini Podugu
+The frontend calls the backend at `http://localhost:8080`. If the backend is not running, the landing page still opens, but registration, login and interview submission need the backend.
 
----
+## Demo flow
+1. Create an account using Sign Up.
+2. Log in.
+3. Open Dashboard and start a mock interview.
+4. Select a role and difficulty.
+5. Answer the displayed question and submit it.
+6. Review the demo feedback.
 
-**IntervAI – Practice. Improve. Ace.**
+## Important AI note
+This starter includes a working question bank and a basic rule-based demo evaluator. It does **not** claim to provide LLM-based evaluation yet. To enable genuine AI-generated questions and nuanced feedback, connect an LLM provider from the backend only, store the API key in an environment variable, and never expose it in frontend JavaScript.
 
-*Turning interview preparation into a smarter learning experience.*# IntervAI
+## API endpoints
+- `GET /api/health`
+- `POST /api/auth/signup`
+- `POST /api/auth/login`
+- `GET /api/interviews/questions?role=Java%20Developer&level=Beginner`
+- `POST /api/interviews/evaluate`
 
-The complete project is in `IntervAI-GitHub-Upload.zip`.
-
-The ZIP contains:
-- `IntervAI_Project.zip`: the supplied Spring Boot and MySQL project.
-- `java-backend/`: the current standalone Java backend and the current frontend pages.
-
-## Run the standalone Java app on Windows
-
-Extract the ZIP, open the `java-backend` folder, and run `run-java-backend.bat`. It requires Java 17 or newer. Then visit `http://127.0.0.1:8000/` or `http://127.0.0.1:8000/login.html`.
-
-The standalone backend keeps accounts and sessions in memory; they are cleared when the server stops. It is for local demonstration, not production use.
-
-For the Spring Boot project's MySQL setup, see `IntervAI_Project.zip` → `IntervAI/README.md`.
+## Security / production notes
+This is a learning MVP, not production-ready authentication. Login currently returns a simple demo token string; protect all private endpoints with JWT validation before real deployment. Add HTTPS, rate limiting, email verification, password reset, stronger input validation, privacy notices and tests before public release.

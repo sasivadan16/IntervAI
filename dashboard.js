@@ -1,0 +1,1 @@
+const user=JSON.parse(sessionStorage.getItem("intervaiUser")||"null");if(!user){location.href="login.html";}const logout=document.getElementById("logoutBtn");if(logout)logout.addEventListener("click",()=>{sessionStorage.removeItem("intervaiUser");location.href="index.html";});
